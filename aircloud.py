@@ -210,24 +210,24 @@ def testCommands():
 #*****************************
 
     enable_disable_scheduler(
-    token=info["token"],
-    family_id=info["familyId"],
+    token=token,
+    family_id=familyId,
     rac_id=96438,
     scheduler_type="WEEKLY_TIMER_ENABLED" # ou "WEEKLY_TIMER_ENABLED" ou SCHEDULE_DISABLED
     )
      
     #****************************
     schedules = get_schedules(
-    token = info["token"],
-    family_id = info["familyId"],
+    token = token,
+    family_id = familyId,
     rac_id = 96438) #salon troubadour
 
     print(json.dumps(schedules, indent=2))
   
     #********************************
     update_schedule(
-        token=info["token"],
-        family_id=info["familyId"],
+        token=token,
+        family_id=familyId,
         rac_id=96438,       # ton unité 101603= RDC Est salon, 96438= salon troubadour
         schedule_id=1361789, # id du créneau existant
         power="ON",
@@ -239,14 +239,14 @@ def testCommands():
 
     #*******************************
     schedules = get_schedules(
-    token = info["token"],
-    family_id = info["familyId"],
+    token = token,
+    family_id = familyId,
     rac_id = 96438) #salon troubadour
 
     print(json.dumps(schedules, indent=2))
 
-    sendGeneralControlCommand ( token = info["token"], 
-                    family_id = info["familyId"], 
+    sendGeneralControlCommand ( token = token, 
+                    family_id = familyId, 
                     room_id = 96438, 
                     mode="HEATING", 
                     setTemperature =20.5,
