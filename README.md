@@ -21,14 +21,20 @@ What the program does overall:
 - Fixes unwanted AUTO fan behavior with custom rules: when change to AUTO detected, moves back to your previous fan speed setup.
 - Detects any change between 2 measures (temperature, fan, mode…) and logs it.
 - Sends commands: ON/OFF, temperature, mode, fan speed, swing.
-- basic functions to manage Weekly Timer schedules (read, update, push).
-- create a VSC file to then exploit in Excel or PowerBI the informations on RACs
+- basic functions to manage Weekly Timer schedules (read, update, push). Building blocs for your own logic to be defined.
+- creates a CSV file to then exploit in Excel or PowerBI the informations on RACs
 
 ## Requirements
 
-- Python 3.10+
 - Hitachi AirCloud Go account
 - Valid RACs already configured in the official app
+
+- Python 3.10+
+- Environment venv, with installed modules:
+```requests
+websocket-client
+python-dotenv
+```
 
 You need to create a .env file with:
 ----------------------------------
@@ -37,24 +43,25 @@ HITACHI_PASSWORD="your_hitachi_AircloudApp_password"
 
 To Run it:
 ----------
-python aircloud.py
+```python aircloud.py
+```
 
 The script will:
 ---------------
-authenticate to AirCloud Go
-list all RACs
-log changes and schedules in Data/log.txt and Data/RacsStatus.csv.
+- authenticate to AirCloud Go
+- list all RACs and Weekly timer schedules for each
+- log changes in Data/log.txt and Data/RacsStatus.csv.
 
 **Exemples of program logs outputs:
 ----------------------------------
 
-_RACs status:
+RACs status:
 
 ```[ 2025-11-23 22:08:01 ]  = RACs Details =
 [ 2025-11-23 22:08:06 ]  Id=12345  - Room1       > Power = OFF  mode = HEATING  fanSpeed = LV3   fanSwing = OFF        roomTemp = 21.0  setpointTemp = 20.0  scheduletype = SCHEDULE_DISABLED
 [ 2025-11-23 22:08:06 ]  Id=12346  - Bedroom     > Power = OFF  mode = HEATING  fanSpeed = LV2   fanSwing = OFF        roomTemp = 20.0  setpointTemp = 20.0  scheduletype = WEEKLY_TIMER_ENABLED
 ```
-_Schedules list:
+Schedules list:
 
 ```[WEEKLY TIMER for bedroom (4 entries) :
 [ 2025-11-23 22:08:06 ]  THU   22:00:00  temp -> 18.5    power ON    HEATING
@@ -62,17 +69,16 @@ _Schedules list:
 [ 2025-11-23 22:08:06 ]  FRI   10:46:00  temp -> 18.0    power ON    HEATING
 [ 2025-11-23 22:08:06 ]  FRI   17:35:00  temp -> 17.0    power ON    HEATING
 ```
-_Detecting updates:
+Detecting updates:
 
 ```[ 2025-11-23 21:00:32 ]  >>> Values changed for bedroom :
 [ 2025-11-23 21:00:32 ]    - '>>> User or scheduler updated 'fanSpeed' ' : LV1 -> AUTO
-[ 2025-11-23 21:00:32 ]    - 'roomTemperature sensor' : 22.0 -> 22.5
-[ 2025-11-23 21:00:32 ]    - '>>> User or scheduler updated 'iduTemperature' ' : 21.0 -> 22.0
 [ 2025-11-23 21:00:32 ]  >>> Values changed for Room1 :
 [ 2025-11-23 21:00:32 ]    - 'roomTemperature sensor' : 22.0 -> 22.5
 [ 2025-11-23 21:00:32 ]  >> FanSpeed AUTO detected on RAC: Bedroom. Forced switch back to LV1
 ```
-_CSV lOG:
+
+_CSV lOG file:
 
 ```timestamp	id	name	power	mode	fanSpeed	fanSwing	roomTemperature	setpointTemperature	scheduletype
 22/11/2025 14:27	96438	Room1	ON	HEATING	LV4	VERTICAL	22.5	20.0	SCHEDULE_DISABLED
