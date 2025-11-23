@@ -5,12 +5,14 @@ It runs but this is still WIP !
 
 It retrieves detailed RAC data (power, mode, temperatures, fan settings…), detects changes, logs them, and sends real commands to the cloud.
 Examples of device states and changes come directly from the API data and logs in the project .
-I initially created it becuse I was upset by the fact teh when using the Weekly timer/ scheduler based on the schedules defined in the Aircloud App, each time the scheduler changes the settings, the fan moves back to AUTO mode, and overwrites the previous fan speed.
+I initially created it because I was upset by the fact teh when using the Weekly timer/ scheduler based on the schedules defined in the Aircloud App, each time the scheduler changes the settings, the fan moves back to AUTO mode, and overwrites the previous fan speed.
 This is really painfull.
+
 I also tried to see if the Hitachi server could accept 'schedule delete' APIs, because the Aircloud App is not capable of deleting a schedule entry it has created. I dont understand how the developers could miss that fundamental and basic feature...
 But I couldn'd find a working message, by testing multiple different queries format to the server./
 
 What the program does overall:
+-----------------------------
 - Reads full unit status for multiple RACs.
 - Fixes unwanted AUTO fan behavior with custom rules: when change to AUTO detected, moves back to your previous fan speed setup.
 - Detects any change between 2 measures (temperature, fan, mode…) and logs it.
@@ -18,7 +20,8 @@ What the program does overall:
 - basic functions to manage Weekly Timer schedules (read, update, push).
 - create a VSC file to then exploit in Excel or PowerBI the informations on RACs
 
-**Exemples of file output:
+**Exemples of program files outputs:
+-------------------------
 
 _RACs status:
 
