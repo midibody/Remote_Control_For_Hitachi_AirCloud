@@ -2,7 +2,8 @@ import os
 import csv
 from datetime import datetime
 
-filename="RacsStatus.csv"
+logFileCSV="Data/RacsStatus.csv"
+logFile = "Data/log.txt"
 
 #************************************
 def dateToText (dateBinary):
@@ -26,7 +27,7 @@ def log(*args):
     message = message + "\n"
 
     try:
-        with open("log.txt", "a", encoding="utf-8", errors="replace") as f:
+        with open(logFile, "a", encoding="utf-8", errors="replace") as f:
             f.write(message)
     except Exception as e:
 
@@ -52,9 +53,9 @@ def logCSV(rac):
         "lastOnlineUpdatedAt"
     ]
 
-    file_exists = os.path.isfile(filename)
+    file_exists = os.path.isfile(logFileCSV)
 
-    with open(filename, "a", newline="", encoding="utf-8") as f:
+    with open(logFileCSV, "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';')
 
         if not file_exists:
