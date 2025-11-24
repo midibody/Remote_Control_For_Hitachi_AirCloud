@@ -48,19 +48,23 @@ HITACHI_PASSWORD="your_hitachi_AircloudApp_password"
 
 To Run it:
 ----------
-```python aircloud.py
+
+```
+python aircloud.py
 ```
 
 The script will:
 ---------------
 - authenticate to AirCloud Go
 - list all RACs and Weekly timer schedules for each
+- check changes in the AC units parameters and current room temperature
+- remove fan speed mode AUTO if previously set to a specific speed
 - log changes in Data/log.txt and Data/RacsStatus.csv.
 
-**Exemples of program logs outputs:
+Exemples of program logs outputs:
 ----------------------------------
 
-RACs status:
+AC Units / RACs status:
 
 ```[ 2025-11-23 22:08:01 ]  = RACs Details =
 [ 2025-11-23 22:08:06 ]  Id=12345  - Room1       > Power = OFF  mode = HEATING  fanSpeed = LV3   fanSwing = OFF        roomTemp = 21.0  setpointTemp = 20.0  scheduletype = SCHEDULE_DISABLED
@@ -71,8 +75,6 @@ Schedules list:
 ```[WEEKLY TIMER for bedroom (4 entries) :
 [ 2025-11-23 22:08:06 ]  THU   22:00:00  temp -> 18.5    power ON    HEATING
 [ 2025-11-23 22:08:06 ]  THU   22:59:00  temp -> 18.0    power ON    HEATING
-[ 2025-11-23 22:08:06 ]  FRI   10:46:00  temp -> 18.0    power ON    HEATING
-[ 2025-11-23 22:08:06 ]  FRI   17:35:00  temp -> 17.0    power ON    HEATING
 ```
 Detecting updates:
 
@@ -83,11 +85,12 @@ Detecting updates:
 [ 2025-11-23 21:00:32 ]  >> FanSpeed AUTO detected on RAC: Bedroom. Forced switch back to LV1
 ```
 
-_CSV lOG file:
+CSV lOG file:
 
-```timestamp	id	name	power	mode	fanSpeed	fanSwing	roomTemperature	setpointTemperature	scheduletype
-22/11/2025 14:27	96438	Room1	ON	HEATING	LV4	VERTICAL	22.5	20.0	SCHEDULE_DISABLED
-22/11/2025 14:27	96442	Bedroom	OFF	HEATING	LV2	OFF	20.0	19.5	WEEKLY_TIMER_ENABLED
+```timestamp	    id	    name	power	mode	    fanSpeed	fanSwing	roomTemperature	setpointTemperature	    scheduletype
+
+22/11/2025 14:27	96438	Room1	ON	    HEATING	    LV4	        VERTICAL	22.5	        20.0	                SCHEDULE_DISABLED
+22/11/2025 14:27	96442	Bedroom	OFF	    HEATING	    LV2	        OFF	        20.0	        19.5	                WEEKLY_TIMER_ENABLED
 ```
 
 HOW TO CONTRIBUTE:
@@ -105,3 +108,9 @@ Because this project is licensed under CC BY-NC 4.0, all contributions must rema
 - improvements to WebSocket/STOMP handling
 - documentation updates
 - Home Assistant integration experiments
+
+PowerBI view from the CSV generated file:
+----------------------------------------
+<p align="center">
+  <img src="RAC-PowerBIGraph-1.jpg" alt="Python API Controller for Hitachi AirCloud AC Units" width="800">
+</p>
