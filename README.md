@@ -11,6 +11,7 @@
 Python tool to read and control Hitachi AC units that are compatible with the (unofficial) AirCloud Go API, replacing the AirCloud GO App potentially, depending on your usage and objectives:
 - Monitor all RACs (power, mode, temperatures, fan, schedule status)
 - Read and update weekly timer schedules
+- Automatically changes AC unit settings when detecting unwanted values ( too high temperatures set by a family user, or automatic switch to fan speed AUTO)
 - Export RAC status to CSV for Excel / Power BI
 
 I initially created it because I was upset by the fact that when using the Weekly timer/ scheduler based on the schedules defined in the Aircloud App, each time the scheduler changes the settings, the fan moves back systematically to AUTO mode, and overwrites your previous fan speed. This is really painfull.
