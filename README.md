@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Assets/Banner.png" alt="Python API Controller for Hitachi AirCloud AC Units" width="800">
+  <img src="Assets/Banner.png" alt="Python API Controller for Hitachi AirCloud AC Units" width="400">
 </p>
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
