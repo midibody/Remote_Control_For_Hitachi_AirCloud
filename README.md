@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="Assets/banner.png" alt="Python API Controller for Hitachi AirCloud AC Units" width="800">
+</p>
+
 ```![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Project Type](https://img.shields.io/badge/Type-API_Controller-orange)
 ![Platform](https://img.shields.io/badge/Hitachi-AirCloud-blue)
