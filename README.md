@@ -2,37 +2,32 @@
   <img src="Assets/Banner.png" alt="Python API Controller for Hitachi AirCloud AC Units" width="800">
 </p>
 
-```![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Project Type](https://img.shields.io/badge/Type-API_Controller-orange)
 ![Platform](https://img.shields.io/badge/Hitachi-AirCloud-blue)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 ![License](https://img.shields.io/badge/License-CC_BY--NC_4.0-red)
-```
-Small Python tool to read and control Hitachi RAC units via the (unofficial) AirCloud Go API:
+
+Python tool to read and control Hitachi AC units that are compatible with the (unofficial) AirCloud Go API, replacing the AirCloud GO App potentially, depending on your usage and objectives:
 - Monitor all RACs (power, mode, temperatures, fan, schedule status)
 - Read and update weekly timer schedules
 - Export RAC status to CSV for Excel / Power BI
 
-It uses the API of the official Hitachi Aircloud Go  App.
+I initially created it because I was upset by the fact that when using the Weekly timer/ scheduler based on the schedules defined in the Aircloud App, each time the scheduler changes the settings, the fan moves back systematically to AUTO mode, and overwrites your previous fan speed. This is really painfull.
 
 This is a non official piece of code, with zero guarantee of maintenability, and certainly bugs.
 It runs but this is still WIP !
 
-It retrieves detailed RAC data (power, mode, temperatures, fan settings…), detects changes, logs them, and sends real commands to the cloud.
-
-I initially created it because I was upset by the fact teh when using the Weekly timer/ scheduler based on the schedules defined in the Aircloud App, each time the scheduler changes the settings, the fan moves back to AUTO mode, and overwrites the previous fan speed. This is really painfull.
-
-I also tried to see if the Hitachi server could accept 'schedule delete' APIs, because the Aircloud App is not capable of deleting a schedule entry it has created. I dont understand how the developers could miss that fundamental and basic feature...
-But I couldn'd find a working message, by testing multiple different queries format to the server./
-
 What the program does overall:
 -----------------------------
-- Reads full unit status for multiple RACs.
+- Reads full unit status for multiple RACs (power, mode, temperatures, fan settings…).
 - Fixes unwanted AUTO fan behavior with custom rules: when change to AUTO detected, moves back to your previous fan speed setup.
 - Detects any change between 2 measures (temperature, fan, mode…) and logs it.
 - Sends commands: ON/OFF, temperature, mode, fan speed, swing.
-- basic functions to manage Weekly Timer schedules (read, update, push). Building blocs for your own logic to be defined.
-- creates a CSV file to then exploit in Excel or PowerBI the informations on RACs
+- Basic functions to manage Weekly Timer schedules (read, update, push). Building blocs for your own logic to be defined.
+- Creates a CSV file to then exploit in Excel or PowerBI the informations on RACs
+- It uses the API of the official Hitachi Aircloud Go App. To get the weekly timer / scheduler APIs I sniffed the messages exchanged between the AirCloud Go App with an MITM proxy on my personal home network.
+- I also tried to see if the Hitachi server could accept 'schedule delete' APIs, because the Aircloud App is not capable of deleting a schedule entry it has created. I dont understand how the developers could miss that fundamental and basic feature... But I couldn'd find a working message (yet), despite trying multiple different queries format to the server. 
 
 ## Requirements
 
