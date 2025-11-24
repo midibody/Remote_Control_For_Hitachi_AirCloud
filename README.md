@@ -1,3 +1,9 @@
+```![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Project Type](https://img.shields.io/badge/Type-API_Controller-orange)
+![Platform](https://img.shields.io/badge/Hitachi-AirCloud-blue)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![License](https://img.shields.io/badge/License-CC_BY--NC_4.0-red)
+```
 Small Python tool to read and control Hitachi RAC units via the (unofficial) AirCloud Go API:
 - Monitor all RACs (power, mode, temperatures, fan, schedule status)
 - Read and update weekly timer schedules
@@ -84,3 +90,19 @@ _CSV lOG file:
 22/11/2025 14:27	96438	Room1	ON	HEATING	LV4	VERTICAL	22.5	20.0	SCHEDULE_DISABLED
 22/11/2025 14:27	96442	Bedroom	OFF	HEATING	LV2	OFF	20.0	19.5	WEEKLY_TIMER_ENABLED
 ```
+
+HOW TO CONTRIBUTE:
+-----------------
+Contributions are welcome.
+Because this project is licensed under CC BY-NC 4.0, all contributions must remain non-commercial and must keep proper attribution.
+
+✔ What you can contribute:
+
+- bug fixes
+- improvements to API calls
+- support for additional RAC models
+- enhanced error handling
+- automation rules (custom behaviours)
+- improvements to WebSocket/STOMP handling
+- documentation updates
+- Home Assistant integration experiments
